@@ -1,0 +1,118 @@
+/* Stilo costumizado para este projeto  */
+      body {
+        padding-top: 20px;
+        padding-bottom: 40px;
+				
+      }
+	  
+		textarea {
+		
+		font-size:15px;
+		}
+
+blockquote{
+    border-left:none;
+	
+}
+
+.quote-badge{
+    background-color: rgba(0, 0, 0, 0.2);   
+}
+
+.quote-box{
+    
+    overflow: hidden;
+    margin-top: -50px;
+    padding-top: -100px;
+    border-radius: 17px;
+ 
+    margin-top: 25px;
+    color:white;
+    width:200px;
+    box-shadow: 2px 2px 2px 2px #E0E0E0;
+      color: #6c6c68;
+}
+
+hr{
+border-top: 1px solid #959292 !important;	
+}
+
+.quote-text{
+    cursor:move;
+    font-size: 14px;
+}
+blockquote {
+    font-size: 14.5px !important;
+    font-weight: bold !important;
+}
+    
+
+      /* Supporting marketing content */
+      .marketing {
+        margin: 60px 0;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+	  
+
+	  .note-1{
+	  background:#FDFB8C; border: 1px solid #DEDC65;
+	  }
+	  
+	  
+	  .note-2 {
+	  background:#A5F88B; border: 1px solid #98E775; 
+	  }
+	  
+	  .note-3  {
+	    background:#A6E3FC; border: 1px solid #75C5E7;
+	  }
+	  
+	  .draggable { width: 168px; height: 192px; padding: 0.5em; border:0; padding-top:10px; }
+	 
+	  .draggable { text-align:center }
+	  .draggable img.pin{ 
+		margin-top:7px;
+		position: absolute;
+		cursor:move;
+		}
+	  .draggable img.delete{margin-left: 0;
+			margin-top: -10px;
+			position: absolute;
+			cursor: pointer;
+		}
+	  .success_msg {
+		position:absolute;
+		right:10px;
+		top:10px;
+		padding:10px;
+		background:black;
+		opacity:0.7;
+		color:#fff;
+	  }
+	 
+	 
+	 .nav-tabs {
+    margin-bottom: 15px;
+}
+.sign-with {
+    margin-top: 25px;
+    padding: 20px;
+}
+div#OR {
+    height: 30px;
+    width: 30px;
+    border: 1px solid #C2C2C2;
+    border-radius: 50%;
+    font-weight: bold;
+    line-height: 28px;
+    text-align: center;
+    font-size: 12px;
+    float: right;
+    position: absolute;
+    right: -16px;
+    top: 40%;
+    z-index: 1;
+    background: #DFDFDF;
+}
