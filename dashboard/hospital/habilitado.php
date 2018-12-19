@@ -1,5 +1,3 @@
-
-
 <?php if (permissao_acesso(252)) { ?>
 
         <div class="tab-content">

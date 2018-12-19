@@ -1,4 +1,3 @@
-
 <?php include("../../cabecalho_menu.php"); 
 
 // Retornar nome do estabelecimento

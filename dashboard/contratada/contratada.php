@@ -1,4 +1,3 @@
-
 <?php if (permissao_acesso(103)) { ?>
 
             <div role="tabpanel" class="tab-pane " id="sph">

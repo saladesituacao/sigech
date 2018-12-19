@@ -1,4 +1,3 @@
-
 <?php 
 
 include("../../cabecalho_menu.php"); 
@@ -8,13 +7,6 @@ include ("../../assets/lib/brTable.php");
 if (empty($_REQUEST['log'])) {
 	Auditoria(53, "Acessar Relatório de Concluídas e Total de não Conformidades", "");
 }
-
-$cod_usuario = $_REQUEST['cod_usuario'];
-$cod_modulo_auditoria = $_REQUEST['cod_modulo_auditoria'];
-$cod_acao_auditoria = $_REQUEST['cod_acao_auditoria'];
-$dt_inicio = $_REQUEST['dt_inicio'];
-$dt_fim = $_REQUEST['dt_fim'];
-$acao = $_REQUEST['acao'];
 
 ?>
 
@@ -112,7 +104,8 @@ data-toggle="table"
 
 
                             <?php												
-                              
+							  $totalNCconcluidas = 0;
+							  $totalNC = 0;
                                while ($rs1 = pg_fetch_array($q1)) {
                                                       
                                 ?>
@@ -122,9 +115,19 @@ data-toggle="table"
                                         <td><?php echo($rs1['total']) ?></td>				
                                     </tr>		
                                 <?php
+
+									$totalNCconcluidas = $totalNCconcluidas + $rs1['totalconcluidas'];
+									$totalNC = $totalNC + $rs1['total'];
+
                                 }
                                 ?>											
-                            </tbody>
+                            <tr>
+                                        <td><b>Total:</td>
+                                        <td><b><?php echo($totalNCconcluidas) ?></td>				
+                                        <td><b><?php echo($totalNC) ?></td>				
+                                    </tr>	
+							
+							</tbody>
                         </table>
                     				
                 <?php

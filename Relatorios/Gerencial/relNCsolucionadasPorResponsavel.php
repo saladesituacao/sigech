@@ -1,4 +1,3 @@
-
 <?php 
 
 include("../../cabecalho_menu.php"); 
@@ -102,7 +101,7 @@ data-toggle="table"
 
 							<?php		
 							
-							
+							$totalNC = 0;
                                while ($rs1 = pg_fetch_array($q1)) {
 
 
@@ -115,8 +114,14 @@ data-toggle="table"
                                         <td><?php echo($rs1['total']) ?></td>				
                                     </tr>		
                                 <?php
+                                 $totalNC = $totalNC + $rs1['total'];
                                 }
-                                ?>											
+                                ?>	
+                                 <tr>
+                                        <td><b>Total:</td>
+										<td></td>				
+                                        <td><b><?php echo($totalNC) ?></td>				
+                                    </tr>										
                             </tbody>
                         </table>
                     				

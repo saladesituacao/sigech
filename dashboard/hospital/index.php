@@ -1,4 +1,3 @@
-
  <div class="panel-group" id="accordionh">
   <div class="panel panel-default">
       <div class="panel-heading" role="tab" id="headingOneh">
