@@ -18,6 +18,7 @@
 
                             //Verificar se existem itens de planos de ações não cumpridos
 
+                            
                             $sqlplano = "SELECT
                             COUNT (cod_pch_estabelecimento)
                         FROM
@@ -30,6 +31,7 @@
 
                         if ($linhaplano[0] == "0"){
                             $cor = "blue";
+                            $qtd = "Nenhuma NC pendente";
                         }else{
                             $cor = "red";
                             $qtd = $linhaplano[0] . " - Não conformidades pendentes";

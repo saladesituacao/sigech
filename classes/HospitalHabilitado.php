@@ -95,7 +95,7 @@ class HospitalHabilitado{
 		return $this->carregarParametros($resultado);
 
 	}
-
+ 
 //Carrega os parametros com o nome do estabelecimento e nome do serviço
 	function carregar2($_id, $_idEstab){
 		global $acesso;
@@ -154,8 +154,64 @@ class HospitalHabilitado{
 	}
 
  
+	function incluirServicoHabilitado(){
+
+		global $acesso;
 
 
+ 
+		if ($this->servicoRepetido()){
+			alert('O serviço já foi adicionado!');
+			submeter('hospital_servico_habilitado_add.php', 'cod_estabelecimento', $this->idEstabelecimento);
+			return false;
+		}
+
+
+ 
+		$sql = "INSERT INTO sigech.tb_servico_habilitado_estabelecimento (
+				
+				cod_servico, cod_estabelecimento, vl_valor, ds_portaria, nr_leitos,
+				ds_observacao, dt_habilitacao, txt_url_portaria
+			) VALUES (";
+			$sql .= tratarStr($this->codServico);
+			$sql .= ", " . tratarStr($this->idEstabelecimento);
+			$sql .= ", " . tratarStr(retornarNumeros($this->valor));
+			$sql .= ", " . tratarStr($this->dsPortaria);
+			$sql .= ", " . tratarStr(retornarNumeros($this->nrLeitos));
+			$sql .= ", " . tratarStr($this->dsObservacao );
+			$sql .= ", " . tratarData($this->dtHabilitacao );
+  			$sql .= ", " . tratarStr($this->urlPortaria );
+
+		$sql .= ")";
+
+
+
+		//echo $sql; exit;
+
+		$qtLin = $acesso->exec($sql);
+		Auditoria(67,'Serviço Habilitado incluído', $sql);
+
+		return ($qtLin > 0);
+	}
+
+
+	function servicoRepetido(){
+
+		global $acesso;
+
+		$sql = "SELECT cod_servico_habilitado_estabelecimento
+				FROM sigech.tb_servico_habilitado_estabelecimento WHERE
+				
+				cod_servico=" . tratarStr($this->idServico) . 
+				
+				" AND cod_estabelecimento=" . tratarStr($this->idEstabelecimento);
+				;
+
+		$resultado = $acesso->getRs($sql);
+
+		return pg_num_rows($resultado)>0;
+
+	}
 
 
 	function editarNC(){

@@ -13,8 +13,13 @@ class Contratada{
 	public $dtAtualizacao;
 	public $indHabilitado;
 	public $nmEstabelecimento;
+	
+	public $idServico;
+	public $areaHabilitado;
+	public $nrServico;
+	public $nmServico;
 
-
+ 
 
 	//Carrega os parametros com o nome do estabelecimento e nome do serviço com potencial de habilitação
 	private function carregarParametros($rs){
@@ -32,6 +37,10 @@ class Contratada{
 			$this-> dtAtualizacao = $linha[7];
 			$this-> indHabilitado = $linha[8];
 			$this-> nmEstabelecimento = $linha[9];
+			$this-> idServico = $linha[10];
+			$this-> areaHabilitado = $linha[11];
+			$this-> nrServico = $linha[12];
+			$this-> nmServico = $linha[13];
 
 			return true;
 		}else{
@@ -48,21 +57,29 @@ class Contratada{
 		$sql = "
 		SELECT
 
-			s.cod_servico_contratada,
-			s.cod_estabelecimento,
-			s.txt_objeto_contratacao,
-			s.nr_contrato,
-			s.dt_vigencia,
-			s.nr_processo,
-			s.cod_usuario,
-			s.dt_atualizacao,
-			s.ind_habilitado,
-			e.nm_estabelecimento
+		sc.cod_servico_contratada,
+		sc.cod_estabelecimento,
+		sc.txt_objeto_contratacao,
+		sc.nr_contrato,
+		sc.dt_vigencia,
+		sc.nr_processo,
+		sc.cod_usuario,
+		sc.dt_atualizacao,
+		sc.ind_habilitado,
+			e.nm_estabelecimento,
+			sc.cod_servico,
+			ab.nr_area_habilitacao,
+			s.nr_servico,
+			s.nm_servico
 
 FROM
-	sigech.tb_servico_contratada s
+	sigech.tb_servico_contratada sc
 INNER JOIN sigech.tb_estabelecimento e
-		ON s.cod_estabelecimento = e.cod_estabelecimento
+	ON sc.cod_estabelecimento = e.cod_estabelecimento
+left join sigech.tb_servico s
+	on sc.cod_servico = s.cod_servico
+left join sigech.tb_area_habilitacao ab
+	on s.cod_area_habilitacao   = ab.cod_area_habilitacao
 WHERE 1 = 1
 AND cod_servico_contratada = " . tratarStr($_id) ;
 
@@ -86,6 +103,7 @@ AND cod_servico_contratada = " . tratarStr($_id) ;
 		$sql .= ", nr_processo = " . tratarStr($this->nrProcesso);
 		$sql .= ", cod_usuario = " . tratarStr($acesso->usuario->id);
 		$sql .= ", dt_atualizacao = " . dataAtual();
+		$sql .= ", cod_servico = " . tratarStr($this->idServico);
 
 				
 
@@ -168,7 +186,7 @@ AND cod_servico_contratada = " . tratarStr($_id) ;
 		$sql = "INSERT INTO sigech.tb_servico_contratada (
 				
 				cod_estabelecimento, txt_objeto_contratacao, nr_contrato, dt_vigencia,
-				nr_processo, cod_usuario, dt_atualizacao
+				nr_processo, cod_usuario, dt_atualizacao, cod_servico
 			) VALUES (";
 			$sql .= tratarStr($this->idEstabelecimento);
 			$sql .= ", " . tratarStr($this->txtObjetoContratacao );
@@ -176,7 +194,8 @@ AND cod_servico_contratada = " . tratarStr($_id) ;
   			$sql .= ", " . tratarData($this->dtVigencia );
   			$sql .= ", " . tratarStr($this->nrProcesso );
   			$sql .= ", " . tratarStr($acesso->usuario->id );
-  			$sql .= ", " . dataAtual();
+			$sql .= ", " . dataAtual();
+			$sql .= ", " . tratarStr($this->idServico );
 		$sql .= ")";
 
 		$qtLin = $acesso->exec($sql);
@@ -192,7 +211,7 @@ AND cod_servico_contratada = " . tratarStr($_id) ;
 			$sql = "INSERT INTO sigech.tb_historico_servico_contratada (
 					
 				cod_servico_contratada, cod_estabelecimento, txt_objeto_contratacao, nr_contrato, dt_vigencia,
-				nr_processo, cod_usuario, dt_atualizacao
+				nr_processo, cod_usuario, dt_atualizacao, cod_servico
 			) VALUES (";
 			$sql .= tratarStr($this->id);
 			$sql .= ", " . tratarStr($this->idEstabelecimento );
@@ -202,6 +221,7 @@ AND cod_servico_contratada = " . tratarStr($_id) ;
 			$sql .= ", " . tratarStr($this->nrProcesso );
 			$sql .= ", " . tratarStr($acesso->usuario->id );
 			$sql .= ", " . dataAtual();
+			$sql .= ", " . tratarStr($this->idServico );
 		$sql .= ")";
 
 		$qtLin = $acesso->exec($sql);

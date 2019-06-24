@@ -82,15 +82,15 @@
                     <td>
                       
                     
-                    <?php if (((permissao_acesso(305) && $perfil->RetornaPerfil($acesso->usuario->perfil) == $estabelecimento) || $acesso->usuario->perfil == 1)){ ?>
+                    <?php if (permissao_acesso(305) || $acesso->usuario->perfil == 1){ ?>
                         <button class='btn btn-default btn-xs' data-target='#modalReabrirPCHC' data-toggle='modal' onClick='reabrirPCHC(<?php echo $linhaPCHC[0];?>,<?php echo $linhaPCHC[1]; ?>)'><i class='fa fa-folder-o' style='font-size:12px;color:green'></i> Reabrir</button>
                     <?php } ?>
                      
-                    <?php if (((permissao_acesso(304) && $perfil->RetornaPerfil($acesso->usuario->perfil) == $estabelecimento) || $acesso->usuario->perfil == 1)){ ?>
+                    <?php if (permissao_acesso(304) || $acesso->usuario->perfil == 1){ ?>
                     <button class='btn btn-default btn-xs' onClick='finalizarFPCHD(<?php echo $linhaPCHC[0]; ?>,<?php echo $linhaPCHC[1];?>)' alt='Finalizar'><i class='fa fa-check-square-o' style='font-size:12px;color:green'></i>Encerrar</button>
                     <?php } ?>
 
-                    <?php if (((permissao_acesso(302) && $perfil->RetornaPerfil($acesso->usuario->perfil) == $estabelecimento) || $acesso->usuario->perfil == 1)){ ?>
+                    <?php if (permissao_acesso(302) || $acesso->usuario->perfil == 1){ ?>
                         <button class='btn btn-default btn-xs' onClick='historicoItemPCH(<?php echo $linhaPCHC[0];?>,<?php echo $linhaPCHC[1]; ?>)'><i class='fa fa-newspaper-o' style='font-size:12px;color:green'></i> Histórico</button>
                     <?php } ?>
 

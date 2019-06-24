@@ -141,6 +141,35 @@ AND sphe.cod_servico_potencial_habilitacao_estabelecimento = " . tratarStr($_id)
 
 
 
+
+	function excluirPotencial(){
+
+		global $acesso;
+
+
+
+		$sql = "DELETE FROM sigech.tb_andamento_processo_habilitacao ";
+		$sql .= " WHERE cod_servico_potencial_habilitacao_estabelecimento = " . tratarStr($this->id);
+
+		$qtLin = $acesso->exec($sql);
+
+		$sql = "DELETE FROM sigech.tb_servico_potencial_habilitacao_estabelecimento ";
+		$sql .= " WHERE cod_servico_potencial_habilitacao_estabelecimento = " . tratarStr($this->id);
+ 
+		
+		$qtLin = $acesso->exec($sql);
+
+		Auditoria(70,'Serviço com potencial de habilitação deletado', $sql);
+		return ($qtLin > 0);
+	}
+
+
+
+
+
+
+
+
 	function incluirServicoPotencialHabilitacao(){
 
 		global $acesso;

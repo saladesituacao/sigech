@@ -119,7 +119,7 @@ function selecionarServico()
 						return;
 					}
 	        		Ajax.onreadystatechange = mostraServico;
-					Ajax.open('GET', 'lista_servico.php?cod_area_habilitacao='+cod_area_habilitacao, true);
+					Ajax.open('GET', '../lista_servico.php?cod_area_habilitacao='+cod_area_habilitacao, true);
         			Ajax.send(null);
 } 
 

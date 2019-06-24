@@ -9,7 +9,7 @@ if ($_GET['cod'] != ''){
 else{
     alert('Estabelecimento não encontrado!');
 }
-
+ 
 
 $sqlEstab = "SELECT nm_estabelecimento FROM sigech.tb_estabelecimento WHERE cod_estabelecimento = " . tratarStr($cod );
 

@@ -5,6 +5,10 @@
             <span role="button" data-toggle="print" class="fa fa-print pull-right" onclick="javascript:window.print();"></span>
             <div class="box box--default">
 
+            <?php if (((permissao_acesso(321) && $perfil->RetornaPerfil($acesso->usuario->perfil) == $estabelecimento) || $acesso->usuario->perfil == 1)){ ?>
+                    <button id="Incluir" class="btn btn-default" onClick="adicionarSH(<?php echo tratarStr($_GET['cod']); ?>);"><i class="fa fa-plus-square" style="font-size:24px;color:green"></i> Adicionar</button>
+            <?php } ?>   
+
             <table id="table" class="table table-striped"
             data-toggle="table"
 			data-show-refresh="true"

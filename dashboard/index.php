@@ -21,8 +21,6 @@ if ($acesso->usuario->perfil == 1) {
             <h1 class="header-page__title">PAINEL DE MONITORAMENTO DAS HABILITAÇÕES DOS SERVIÇOS DE SAÚDE</h1>
         </header>
         <hr>
-        
-      
 
                     <!--acesso ao monitoramento dos hospitais -->
                     <?php if (permissao_acesso(16)){ ?>
@@ -31,12 +29,11 @@ if ($acesso->usuario->perfil == 1) {
                     include("hospital/index.php"); 
                     ?>
                     <?php } ?>
-                    <!-- UNIDADE DE SAÚDE -->
 
+                    <!-- UNIDADE DE SAÚDE -->
                     <?php 
                     //include("unidade_saude/index.php"); 
                     ?>
-
 
                     <!--acesso ao monitoramento das contratadas -->
                     <?php if (permissao_acesso(312)){ ?>
@@ -45,6 +42,14 @@ if ($acesso->usuario->perfil == 1) {
                     include("contratada/index.php"); 
                     ?>
                     <?php } ?>
+
+
+                    <!-- CEO's DF -->
+                    <?php 
+                    //include("ceo/index.php"); 
+                    ?>
+
+
 
     </div><!-- /container -->
 

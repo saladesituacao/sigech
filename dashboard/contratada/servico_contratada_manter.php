@@ -68,6 +68,8 @@ function carregarParametros($contratada){
 	$contratada->dtVigencia          				= $_POST['dt_vigencia'];
 	$contratada->nrProcesso            			= $_POST['nr_processo'];
 
+	$contratada->idServico						= $_POST['cod_servico'];
+
 }
 
 include("../../classes/FechaAcesso.php");

@@ -5,16 +5,15 @@ include ("../../classes/Auditoria.php");
 include ("../../assets/lib/brTable.php");
 
 	  $sqlEstabelecimento = "select 
-	  cod_estabelecimento, nm_estabelecimento, cod_classificacao_estabelecimento, 
-	  case when cod_classificacao_estabelecimento = 1 then 'Hospital'
-			  when cod_classificacao_estabelecimento = 2 then 'Unidade de Saúde'
-				when cod_classificacao_estabelecimento = 3 then 'Contratada'
-					else 'Não Classificada'
-		end as classificacao,
-		txt_nome_contato,
-		txt_email_contato,
-		txt_telefone_contato
-	  from sigech.tb_estabelecimento where cod_classificacao_estabelecimento = 1 order by nm_estabelecimento asc";
+		e.cod_estabelecimento, e.nm_estabelecimento, ce.cod_classificacao_estabelecimento, 
+		ce.txt_classificacao_estabelecimento,
+		e.txt_nome_contato,
+		e.txt_email_contato,
+		e.txt_telefone_contato
+		from sigech.tb_estabelecimento e
+		inner join sigech.tb_classificacao_estabelecimento ce
+			on e.cod_classificacao_estabelecimento = ce.cod_classificacao_estabelecimento
+		where e.cod_classificacao_estabelecimento = 1 order by nm_estabelecimento asc";
 
 		$rsEstabelecimento = $acesso->getRs($sqlEstabelecimento);	
 		Auditoria(17,'Listagem de planos de credenciamento e habilitação', $sql);	

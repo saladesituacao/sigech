@@ -112,6 +112,10 @@ if ($acesso->usuario->id == ''){
                                         <li class="dropdown">        
                                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">CONSULTAS<span <span class="caret"></span></a>
                                             <ul class="dropdown-menu">
+                                        <?php if (permissao_acesso(322)) { ?>
+                                            <li class=""><a href="/sigech/consulta/pesquisa_area_habilitacao.php?output=html"><span class="fa fa-search"  style="font-size:16px;color:blue">&nbsp;&nbsp;&nbsp; </span><b>Pesquisa por Área de Habilitação</b></a></li>
+                                        <?php } ?>  
+                                        
                                         <?php if (permissao_acesso(12)) { ?>
                                             <li class=""><a href="/sigech/consulta/pesquisa_estabelecimento.php?output=html&cod_estabelecimento="><span class="fa fa-search"  style="font-size:16px;color:blue">&nbsp;&nbsp;&nbsp; </span><b>Pesquisa por Estabelecimento</b></a></li>
                                         <?php } ?>  
@@ -176,6 +180,17 @@ if ($acesso->usuario->id == ''){
                                         <li class=""><a href="/sigech/Relatorios/Gerencial/relNCsolucionadasPorResponsavel.php?output=html"><span class="fa fa-tasks"  style="font-size:16px;color:blue">&nbsp;&nbsp;&nbsp; </span><b>Nº de não conformidades concluídas e encaminhadas para DIVISA (por responsável) </b></a></li>
                                         <?php } ?>
 
+                                        <?php if (permissao_acesso(323)) { ?>
+                                        <li class=""><a href="/sigech/Relatorios/Gerencial/relQtdServicosPorEstabelecimento.php?output=html"><span class="fa fa-tasks"  style="font-size:16px;color:blue">&nbsp;&nbsp;&nbsp; </span><b>Quantidade de serviços por estabelecimento </b></a></li>
+                                        <?php } ?>
+                                        
+                                        
+                                        <?php if (permissao_acesso(317)) { ?>
+                                        <li class=""><a href="/sigech/Relatorios/Gerencial/relNCResumoGeral.php?output=html"><span class="fa fa-tasks"  style="font-size:16px;color:blue">&nbsp;&nbsp;&nbsp; </span><b>Resumo das Não Conformidades </b></a></li>
+                                        <?php } ?>
+
+                                        
+
                                             </ul>
                                         </li>
 
@@ -192,6 +207,12 @@ if ($acesso->usuario->id == ''){
                         <?php if (permissao_acesso(8)) { ?>
                             <li><a href="/sigech/tabelas_apoio/cargo/listar_cargo.php?output=html"><span class="fa fa-mortar-board"  style="font-size:16px;color:blue">&nbsp;&nbsp;&nbsp; </span><b>Cargo</b></a></li>
                         <?php } ?>  
+
+                        <?php if (permissao_acesso(331)) { ?>
+                            <li><a href="/sigech/tabelas_apoio/classificacao_estabelecimento/listar_classificacao_estabelecimento.php?output=html"><span class="fa fa-hospital-o"  style="font-size:16px;color:blue">&nbsp;&nbsp;&nbsp; </span><b>Classificar Estabelecimento</b></a></li>
+                        <?php } ?>  
+
+
                         <?php if (permissao_acesso(9)) { ?>
                             <li><a href="/sigech/tabelas_apoio/orgao/listar_orgao.php?output=html"><span class="fa fa-sitemap"  style="font-size:16px;color:blue">&nbsp;&nbsp;&nbsp; </span><b>Orgão</b></a></li>
                         <?php } ?>  

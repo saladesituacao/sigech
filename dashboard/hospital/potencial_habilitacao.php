@@ -78,8 +78,14 @@ echo $linhaEstabServPotHabilitacao[8];
                         
                         <?php if (((permissao_acesso(102) && $perfil->RetornaPerfil($acesso->usuario->perfil) == $estabelecimento) || $acesso->usuario->perfil == 1)){ ?>
                                 <button class='btn btn-default btn-xs' onClick="acompanharEPH('<?php echo $linhaEstabServPotHabilitacao[0];?>','<?php echo $linhaEstabServPotHabilitacao[5];?>')"><i class='fa fa-line-chart' style='font-size:24px;color:blue'></i>Acompanhar</button>
-                        </td>
                         <?php } ?>
+
+                        <?php if (((permissao_acesso(324) && $perfil->RetornaPerfil($acesso->usuario->perfil) == $estabelecimento) || $acesso->usuario->perfil == 1)){ ?>
+                                <button class='btn btn-default btn-xs' data-target='#modalExcluirPotencial' data-toggle='modal' onClick="excluirPotencial('<?php echo $linhaEstabServPotHabilitacao[0];?>','<?php echo $linhaEstabServPotHabilitacao[5];?>')"><i class='fa fa-trash' style='font-size:24px;color:red'></i>Excluir</button>
+                        <?php } ?>
+                        
+                        </td>
+                        
         </tr>
         
         

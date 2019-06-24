@@ -1,9 +1,10 @@
 <?php 
 include("../../cabecalho_menu.php"); 
 include("../../classes/Contratada.php");
+include("../../options/optServico.php");
 
 
-
+ 
 
 $contratada = new Contratada();
  
@@ -84,6 +85,24 @@ function validar(){
 			      <label class="control-label col-sm-2" for="nome">Estabelecimento:</label>
                    <div class="col-sm-6">
 				   <?php echo $contratada->nmEstabelecimento; ?>
+                    </div>
+		</div>
+
+		<div class="form-group">
+			      <label class="control-label col-sm-2" for="nome">Serviço habilitado:</label>
+                   <div class="col-sm-6">
+				   <?php echo $contratada->areaHabilitado . $contratada->nrServico . " - " . $contratada->nmServico; ?>
+                    </div>
+		</div>
+
+		<div class="form-group">
+			      <label class="control-label col-sm-2" for="nome">Modificar serviço:</label>
+                   <div class="col-sm-6">
+				   <select id="cod_servico" name="cod_servico" ">
+				   <option value="0">Selecione</option>
+						<?php optServico($contratada->areaHabilitado)?>
+                                 </select>
+								 
                     </div>
 		</div>
 

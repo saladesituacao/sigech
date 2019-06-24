@@ -66,7 +66,7 @@ function validar(){
 		<div class="form-group">
 		<center>
 		<?php if (permissao_acesso(291)) {?>
-		<button class="btn btn-default" onClick="voltar();"><i class="fa fa-keyboard-o" style="font-size:24px;color:blue"></i> Salvar</button>  
+		<button class="btn btn-default"><i class="fa fa-keyboard-o" style="font-size:24px;color:blue"></i> Salvar</button>  
 		<?php }?>
 		<button class="btn btn-default" onclick="history.go(-1)"><i class="fa fa-eraser" style="font-size:24px;color:red"></i> Voltar</button>  
 		</div>

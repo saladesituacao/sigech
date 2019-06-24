@@ -21,7 +21,7 @@
                       
                       SELECT COUNT(cod_servico_contratada)
                       FROM sigech.tb_servico_contratada
-                      WHERE TO_CHAR(dt_vigencia, 'DD/MM/YYYY') < TO_CHAR(CURRENT_DATE, 'DD/MM/AAAA')
+                      WHERE TO_CHAR(dt_vigencia, 'DD/MM/YYYY') <= TO_CHAR(CURRENT_DATE, 'DD/MM/YYYY')
                       AND cod_estabelecimento =  " . $linhaContratada[0];
 
   
@@ -31,6 +31,7 @@
 
                         if ($linhaServicoContratada[0] == "0"){
                           $corC = "blue";
+                          $qtdC = "Contrato vigente";
                           }else{
                               $corC = "red";
                               $qtdC = $linhaServicoContratada[0] . " - Contrato vencido";

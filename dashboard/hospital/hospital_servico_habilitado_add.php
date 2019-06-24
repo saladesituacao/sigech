@@ -1,7 +1,8 @@
 <?php 
 include("../../cabecalho_menu.php"); 
-include("../dados/contratada.php"); 
+include("../dados/hospital.php"); 
 include("../../options/optAreaHabilitacao.php");
+
 
 ?>
 
@@ -9,7 +10,7 @@ include("../../options/optAreaHabilitacao.php");
  
 function validar(){
 
-	
+
 if (frmCadastro.cod_area_habilitacao.value == '0'){
 		alert('Informe a área de habilitação!');
 		frmCadastro.cod_area_habilitacao.focus();
@@ -24,40 +25,39 @@ if (frmCadastro.cod_servico.value == '0'){
 	}
 
 
-
- 
-	if (frmCadastro.txt_objeto_contratacao.value == ''){
-		alert('Informe o objeto!');
-		frmCadastro.txt_objeto_contratacao.focus();
+	
+	if (frmCadastro.vl_valor.value == ''){
+		alert('Informe o valor!');
+		frmCadastro.vl_valor.focus();
 		return false;
 	}
 	
 	
-	if (frmCadastro.nr_contrato.value == ''){
-		alert('Informe o número do contrato!');
-		frmCadastro.nr_contrato.focus();
+	if (frmCadastro.ds_portaria.value == ''){
+		alert('Informe a portaria!');
+		frmCadastro.ds_portaria.focus();
 		return false;
 	}
 
 
-	if (frmCadastro.dt_vigencia.value == ''){
-		alert('Informe a data da vigência!');
-		frmCadastro.dt_vigencia.focus();
+	if (frmCadastro.nr_leitos.value == ''){
+		alert('Informe o número de leitos!');
+		frmCadastro.nr_leitos.focus();
 		return false;
 	}
 
-	if (frmCadastro.nr_processo.value == ''){
-			alert('Informe o número do processo!');
-			frmCadastro.nr_processo.focus();
-			return false;
-		}
+	
 
-
-		return true;
+	if (frmCadastro.dt_habilitacao.value == ''){
+		alert('Informe a DATA de habilitação!');
+		frmCadastro.dt_habilitacao.focus();
+		return false;
 	}
 
+	return true;
+}
 
-	var Ajax = false;
+var Ajax = false;
 
 function AjaxRequest() {
 				Ajax = false;
@@ -77,6 +77,8 @@ function AjaxRequest() {
 			}
 			
 
+
+
 function selecionarServico()
  { 
 	
@@ -94,7 +96,6 @@ function selecionarServico()
 					Ajax.open('GET', '../lista_servico.php?cod_area_habilitacao='+cod_area_habilitacao, true);
         			Ajax.send(null);
 } 
-
 
 function mostraServico() 
 { 
@@ -135,15 +136,18 @@ function mostraServico()
 				
 }    
 
+ 
+
+
 
 </script>
  <div class="panel-body">
-<form name="frmCadastro" class="form-horizontal" action="servico_contratada_manter.php" method=post onSubmit="return validar()">
-<input type="hidden" name="acao" value="I">
+<form name="frmCadastro" class="form-horizontal" action="hospital_habilitado_manter.php" method=post onSubmit="return validar()">
+<input type="hidden" name="acao" value="ISH">
 <input type="hidden" name="cod_estabelecimento" value="<?php echo $cod; ?>">
 	<div class="container">
         <header class="header-page">
-            <h3 class="header-page__title">INCLUIR SERVIÇO CONTRATADO </h3><P>
+            <h3 class="header-page__title">INCLUIR SERVIÇO HABILITADO </h3><P>
         </header>
         <div class="clearfix"></div>
 	   
@@ -153,9 +157,8 @@ function mostraServico()
 				   <?PHP echo ($estabelecimento); ?>
                     </div>
 		</div>
-
-
-		<div class="form-group">
+		
+<div class="form-group">
 			      <label class="control-label col-sm-2" for="nome">Área de habilitação:</label>
                    <div class="col-sm-6">
 				   <select id="cod_area_habilitacao" name="cod_area_habilitacao" onChange="selecionarServico();">
@@ -174,47 +177,69 @@ function mostraServico()
 							</select>
                     </div>
 		</div>
-
-
-		<div class="form-group">
-			      <label class="control-label col-sm-2" for="nome">Objeto:</label>
-                   <div class="col-sm-6">
-				   <textarea rows="3" name="txt_objeto_contratacao" placeholder="Digite o objeto do contrato" style="width:99%"></textarea>
-                    </div>
-		</div>
-		
 		
 		<div class="form-group">
-			      <label class="control-label col-sm-2" for="nome">Número do Contrato:</label>
+			      <label class="control-label col-sm-2" for="nome">Valor:</label>
                    <div class="col-sm-6">
-						<input type="text" maxlength="100" size="20" class=" "   placeholder="Digite o número do contrato" name="nr_contrato" value=""/>
-							<i class="fa fa-question-circle" style="color:red" title="Campo obrigatório"></i>
-                    </div>
-		</div>
-
-
-		<div class="form-group">
-			      <label class="control-label col-sm-2" for="nome">Data de vigência:</label>
-                   <div class="col-sm-6">
-						<input type="text" size="14" maxLength="10" onKeyPress="mask(this,'00/00/0000',1, event)" onBlur="isDate(this);" name="dt_vigencia" id="dt_vigencia" />
-						<img src="../../assets/img/calendario.gif" id="btnDtVigencia" style="cursor:hand" width="24" height="12" alt="Calendário">(dd/mm/aaaa)
-						<script type="text/javascript">
-							Calendar.setup({
-								inputField: 'dt_vigencia',
-								button: "btnDtVigencia",
-								align: "Tr"
-							});
-						</script>	
-                    </div>
-		</div>
-
-
-		<div class="form-group">
-			      <label class="control-label col-sm-2" for="nome">Número do processo:</label>
-                   <div class="col-sm-6">
-				   <input type="text" maxlength="100" size="20" class=" "   placeholder="Digite o valor" name="nr_processo" value=""/>
+				   <input type="text" maxlength="50" size="20" class=" "   placeholder="Digite o valor" name="vl_valor" value=""/>
 		          	<i class="fa fa-question-circle" style="color:red" title="Campo obrigatório"></i>
 				   
+                    </div>
+		</div>
+
+
+		<div class="form-group">
+			      <label class="control-label col-sm-2" for="nome">Portaria:</label>
+                   <div class="col-sm-6">
+				   <input type="text" maxlength="50" size="50" class=" "   placeholder="Digite a portaria " name="ds_portaria" value=""/>
+		          	<i class="fa fa-question-circle" style="color:red" title="Campo obrigatório"></i>
+                    </div>
+		</div>
+
+
+		<div class="form-group">
+			      <label class="control-label col-sm-2" for="nome">Número de leitos:</label>
+                   <div class="col-sm-6">
+				   <input type="text" maxlength="50" size="20" class=" "   placeholder="Digite o valor" name="nr_leitos" value="<?php echo $hospital->nrLeitos; ?>"/>
+		          	<i class="fa fa-question-circle" style="color:red" title="Campo obrigatório"></i>
+				   
+                    </div>
+		</div>
+
+
+		<div class="form-group">
+			      <label class="control-label col-sm-2" for="nome">Observação:</label>
+                   <div class="col-sm-6">
+				   <textarea rows="3" name="ds_observacao" style="width:99%"></textarea>
+                    </div>
+		</div>
+		
+
+		
+
+		<div class="form-group">
+			      <label class="control-label col-sm-2" for="nome">URL Portaria:</label>
+                   <div class="col-sm-6">
+			      	<input type="text" maxlength="200" size="80" class=" "   placeholder="Digite a URL" name="txt_url_portaria" value="<?php echo $hospital->urlPortaria; ?>"/>
+                    </div>
+		</div>
+
+
+		
+
+
+		<div class="form-group">
+			      <label class="control-label col-sm-2" for="nome">Data da habilitação:</label>
+                   <div class="col-sm-6">
+				   <input type="text" size="14" maxLength="10" onKeyPress="mask(this,'00/00/0000',1, event)" onBlur="isDate(this);" name="dt_habilitacao" id="dt_habilitacao" />
+				   <img src="../../assets/img/calendario.gif" id="btnDtHabilitacao" style="cursor:hand" width="24" height="12" alt="Calendário">(dd/mm/aaaa)
+				<script type="text/javascript">
+				    Calendar.setup({
+					    inputField: 'dt_habilitacao',
+					    button: "btnDtHabilitacao",
+					    align: "Tr"
+					});
+				</script>	
                     </div>
 		</div>
 

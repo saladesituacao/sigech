@@ -19,7 +19,7 @@ Auditoria(22,'Detalhamento hospitalar', $sqlEstab);
 
 </form>
 
-  
+   
  
     <div class="container">
         <header class="header-page">
@@ -125,6 +125,60 @@ include("plano_acao.php");
 </form>
 				</div>
             </div>
+
+
+
+
+
+<!-- EXCLUIR POTENCIAL DE HABILITAÇÃO-->
+
+<div class="row" style="margin-left: 0px; margin-right: 0px;">
+			<div class="modal fade" id="modalExcluirPotencial">
+			
+            <form name="frmExcluirPotencial" action="" method="post">
+		    <input type='hidden' name='acao' value=''>
+		    <input type='hidden' name='cod_servico_potencial_habilitacao_estabelecimento' value=''>
+            <input type='hidden' name='cod_estabelecimento' value=''>
+            
+            
+            
+            	<div class="modal-dialog" style="width: 500px">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title">Excluir Serviço</h4>
+						</div>
+                        
+                        
+                        <div class="modal-body">
+              <div class="row">
+                  <div class="col-xs-12">
+                      <div class="well">
+							
+							<div class="row">
+								<span id="modalJustificativaError" class=""></span>
+							</div>
+                            <a class="btn btn-primary" onclick="excluirServicoPH();">Sim</a> <a href="#" data-dismiss="modal" class="btn">Não</a>
+                      </div>
+                  </div>
+                  <div class="col-xs-12">
+                      <p><b>Nota</b></p>
+                      <p class="text-justify">O serviço será excluído.</p>
+                      <p class="text-justify">Uma vez excluído, as informações não poderão ser recuperadas.</p>
+                  </div>
+              </div>
+          </div>
+                        
+                  
+                          
+						</div>
+						
+					</div>
+</form>
+				</div>
+            </div>
+
+
 
 
 
@@ -392,7 +446,15 @@ document.getElementsByName('frmHospital')[0].submit();
 }
 
  
- 
+
+function adicionarSH(cod){
+
+frmHospital.cod_estabelecimento.value =  cod;
+frmHospital.acao.value =  'ISH';
+document.getElementsByName('frmHospital')[0].action = 'hospital_servico_habilitado_add.php';
+document.getElementsByName('frmHospital')[0].submit();
+}
+
 
 function adicionarSPH(cod){
 
@@ -401,6 +463,8 @@ frmHospital.acao.value =  'ISPH';
 document.getElementsByName('frmHospital')[0].action = 'hospital_servico_potencial_habilitacao_add.php';
 document.getElementsByName('frmHospital')[0].submit();
 }
+
+
 
  
 function acompanharEPH(cod,codEstab){
@@ -423,6 +487,21 @@ document.getElementsByName('frmHospital')[0].submit();
 }
 
 
+function excluirPotencial(cod,codEstab){
+
+frmExcluirPotencial.cod_servico_potencial_habilitacao_estabelecimento.value =  cod;
+frmExcluirPotencial.cod_estabelecimento.value =  codEstab;
+frmExcluirPotencial.acao.value =  'EPH';
+
+}
+
+
+function excluirServicoPH(){
+
+document.getElementsByName('frmExcluirPotencial')[0].action = 'hospital_potencial_habilitacao_manter.php';
+document.getElementsByName('frmExcluirPotencial')[0].submit();    
+
+}
 
 
 function enviarPCH(){

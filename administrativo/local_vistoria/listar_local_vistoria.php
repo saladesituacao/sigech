@@ -152,7 +152,7 @@ function adicionar(){
 	document.getElementsByName('frmCadastro')[0].submit();
 }
 
-
+ 
 function editar(cod){
 
 	document.getElementsByName('cod_local_vistoria')[0].value = cod;

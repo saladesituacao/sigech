@@ -20,6 +20,20 @@ switch ($_POST['acao']) {
 			redirecionar('detalhar.php?cod=' . $hospital->idEstabelecimento);
 		}
 		  break;
+
+
+
+
+	case "ISH":
+		  carregarParametros($hospital);
+  
+		  if (!$hospital->incluirServicoHabilitado()){
+			  voltar();
+		  }else{
+			  alert("Serviço hospitalar incluído com sucesso!");
+			  redirecionar('detalhar.php?cod=' . $hospital->idEstabelecimento);
+		  }
+			break;
 		  
 
 
@@ -164,7 +178,7 @@ function carregarParametros($hospital){
 	$hospital->nrDiasPrazoResponsavel			= $_POST['nr_dias_prazo_responsavel'];
 
 
-	
+	 
 	// Cumprimento via modulo administrativo
 	if ($_POST['adm'] == 'S'){
 		$hospital->idPchEstabelecimento				= $_POST['cod_pch_estabelecimento1'];

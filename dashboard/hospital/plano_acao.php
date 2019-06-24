@@ -75,12 +75,12 @@
                     </td> 
                     <td>
                       
-                    
+                        
                     <?php if (((permissao_acesso(298) && $perfil->RetornaPerfil($acesso->usuario->perfil) == $estabelecimento) || $acesso->usuario->perfil == 1)){ ?>
                         <button class='btn btn-default btn-xs' data-target='#modalEditarPCH' data-toggle='modal' onClick='editarPCH(<?php echo $linhaPCH[0];?>,<?php echo $linhaPCH[1]; ?>)'><i class='fa fa-edit' style='font-size:12px;color:green'></i> Editar</button>
                     <?php } ?>
 
-                    <?php if (((permissao_acesso(236) && $perfil->RetornaPerfil($acesso->usuario->perfil) == $estabelecimento) || $acesso->usuario->perfil == 1)){ ?>
+                    <?php if (((permissao_acesso(236) && $perfil->RetornaPerfil($acesso->usuario->perfil) == $estabelecimento) || $acesso->usuario->perfil == 1) || $acesso->usuario->perfil == 4){ ?>
                         <button class='btn btn-default btn-xs' data-target='#modalObservacaoPCH' data-toggle='modal' onClick='informarRPCH(<?php echo $linhaPCH[0];?>,<?php echo $linhaPCH[1]; ?>)'><i class='fa fa-folder-o' style='font-size:12px;color:green'></i> Observações</button>
                     <?php } ?>
                      
@@ -88,7 +88,7 @@
                     <button class='btn btn-default btn-xs' data-target='#modalFinalizarPCH' data-toggle='modal' onClick='finalizarFPCH(<?php echo $linhaPCH[0]; ?>,<?php echo $linhaPCH[1];?>)' alt='Finalizar'><i class='fa fa-check-square-o' style='font-size:12px;color:green'></i>Finalizar</button>
                     <?php } ?>
 
-                    <?php if (((permissao_acesso(299) && $perfil->RetornaPerfil($acesso->usuario->perfil) == $estabelecimento) || $acesso->usuario->perfil == 1)){ ?>
+                    <?php if (((permissao_acesso(299) && $perfil->RetornaPerfil($acesso->usuario->perfil) == $estabelecimento) || $acesso->usuario->perfil == 1) || $acesso->usuario->perfil == 4){ ?>
                         <button class='btn btn-default btn-xs' onClick='historicoItemPCH(<?php echo $linhaPCH[0];?>,<?php echo $linhaPCH[1]; ?>)'><i class='fa fa-newspaper-o' style='font-size:12px;color:green'></i> Histórico</button>
                     <?php } ?>
  

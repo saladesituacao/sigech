@@ -3,7 +3,7 @@
 include("Auditoria.php");
 class LocalVistoria{
 
-	public $id;
+	public $id; 
 	public $localvistoria;
 	public $habilitado;
 

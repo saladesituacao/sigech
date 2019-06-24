@@ -5,13 +5,14 @@ include("../../classes/Estabelecimento.php");
 include("../../options/optEstabelecimento.php");
 
 
-
+$acao = 'I';
 $estabelecimento = new Estabelecimento();
 
-$acao = 'A';
+
+
 if ($_POST['cod_estabelecimento'] != ''){
 
-	
+	$acao = 'A';
 
 	if (!$estabelecimento->carregar($_POST['cod_estabelecimento'])){
 		alert('Erro ao carregar estabelecimento!');
@@ -19,11 +20,6 @@ if ($_POST['cod_estabelecimento'] != ''){
 		exit();
 	}
 
-}else{
-
-	alert('Erro ao carregar dados do estabelecimento!');
-	voltar();
-	exit();
 }
 
 ?>
@@ -31,6 +27,14 @@ if ($_POST['cod_estabelecimento'] != ''){
 <script language="javascript">
 
 function validar(){
+
+	
+	if (frmCadastro.nm_estabelecimento.value == ''){
+		alert('Informe o nome do estabelecimeto!');
+		frmCadastro.nm_estabelecimento.focus();
+		return false;
+	}
+
 
 	if (frmCadastro.txt_nome_contato.value == ''){
 		alert('Informe o nome!');
@@ -56,6 +60,7 @@ function validar(){
 		frmCadastro.txt_telefone_contato.focus();
 		return false;
 	}
+
 	return true;
 }
 </script>
@@ -69,12 +74,16 @@ function validar(){
         </header>
         <div class="clearfix"></div>
 	   
+		
 		<div class="form-group">
 			      <label class="control-label col-sm-2" for="nome">Estabelecimento:</label>
                    <div class="col-sm-6">
-				   <?php echo $estabelecimento->nome; ?>
+			      	<input type="text" maxlength="100" size="80" class=" "   placeholder="Digite o nome completo" name="nm_estabelecimento" value="<?php echo $estabelecimento->nome; ?>"/>
+		          	<i class="fa fa-question-circle" style="color:red" title="Campo obrigatório"></i>
                     </div>
 		</div>
+		
+		
 
 
 		<div class="form-group">
@@ -111,6 +120,13 @@ function validar(){
                    <div class="col-sm-6">
 			      	<input type="text" maxlength="50" size="80" class=" "   placeholder="Digite o Telefone" onkeypress="mask(this,'(00)0000-0000', 1, event)" name="txt_telefone_contato" value="<?php echo mask($estabelecimento->telefoneContato,'(##)####-####'); ?>"/>
 		          	<i class="fa fa-question-circle" style="color:red" title="Campo obrigatório"></i>
+                    </div>
+		</div>
+
+		<div class="form-group">
+			      <label class="control-label col-sm-2" for="fone">Cnes:</label>
+                   <div class="col-sm-6">
+			      	<input type="text" maxlength="10" size="80" class=" "   placeholder="Digite o código do CNES" onkeypress="mask(this,'00000000', 1, event)" name="cod_cnes" value="<?php echo mask($estabelecimento->cnes,'########'); ?>"/>
                     </div>
 		</div>
 

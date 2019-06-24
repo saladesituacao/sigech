@@ -7,7 +7,7 @@ include("../../rotinas_comuns.php");
 
 $hospital = new HospitalPotencialHabilitacao();
 
-
+ 
 switch ($_POST['acao']) {
 
 	case "ASPH":
@@ -39,15 +39,29 @@ switch ($_POST['acao']) {
 	case "EPH":
 		  carregarParametros($hospital);
   
-		  if (!$hospital->gerarEtapasProcessoHabilitacao()){
+		  if (!$hospital->excluirPotencial()){
 			  voltar();
 		  }else{
   
-			  alert("Etapas do Processo de Habilitaçao gerados com sucesso!");
+			  alert("Serviço com potencial de habilitação excluído com sucesso!");
 			  redirecionar('detalhar.php?cod=' . $hospital->idEstabelecimento);
 		  }
   
 			break;
+
+
+	case "EPH":
+			carregarParametros($hospital);
+	
+			if (!$hospital->excluirPotencial()){
+				voltar();
+			}else{
+	
+				alert("Potencial de habilitação excluído com sucesso!");
+				redirecionar('detalhar.php?cod=' . $hospital->idEstabelecimento);
+			}
+	
+			  break;
 
 
 	case "FEPH":

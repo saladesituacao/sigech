@@ -31,9 +31,15 @@ Auditoria(59,'Detalhar contratada', $sqlEstab);
        
 <!-- DETALHE DO ESTABELECIMENTO -->
 
+
         <ul class="nav nav-pills nav-justified space-mb-md" role="tablist">
+        
 <?php if (permissao_acesso(313)) { ?>
-            <li class="active"><a href="#sh" data-toggle="tab">Contratado</a></li>
+            <li class="active"><a href="#sc" data-toggle="tab">Contratado</a></li>
+<?php } ?>
+
+<?php if (permissao_acesso(333)) { ?>
+            <li><a href="#sd" data-toggle="tab">Desabilitado</a></li>
 <?php } ?>
 
         </ul>
@@ -43,6 +49,10 @@ Auditoria(59,'Detalhar contratada', $sqlEstab);
 if (permissao_acesso(313)) { 
 include("contratada.php"); 
 }
+
+if (permissao_acesso(333)) { 
+    include("desabilitado.php"); 
+    }
 
 ?>
 
